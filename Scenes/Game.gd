@@ -22,10 +22,13 @@ func _process(_delta):
 
 func _on_LicitarSpawnTimer_timeout():
 	var licitar
-	if rng.randf() < 0.7:
+	var probability = rng.randf()
+	if probability < 0.7:
 		licitar = load("res://Scenes/LicitarA.tscn").instance()
-	else:
+	elif probability < 0.9:
 		licitar = load("res://Scenes/LicitarB.tscn").instance()
+	else:
+		licitar = load("res://Scenes/LicitarC.tscn").instance()
 	licitar.position.x = $Player.position.x + 854
 	licitar.position.y = rng.randf_range(16, 240 - 16)
 	add_child(licitar)
