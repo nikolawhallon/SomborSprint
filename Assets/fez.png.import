@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_0.png-745f50bef28d17375a17d119150e5c86.stex"
+path="res://.import/fez.png-f97513636b68893a633fcf5f9dabb851.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Background/background_0.png"
-dest_files=[ "res://.import/background_0.png-745f50bef28d17375a17d119150e5c86.stex" ]
+source_file="res://Assets/fez.png"
+dest_files=[ "res://.import/fez.png-f97513636b68893a633fcf5f9dabb851.stex" ]
 
 [params]
 

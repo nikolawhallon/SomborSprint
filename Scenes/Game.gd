@@ -2,16 +2,7 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 var score = 0
-var started = false
 
-func _input(event):
-	if event is InputEventKey:
-		if event.pressed and !started:
-			started = true
-			$Player.visible = true
-			$CanvasLayer/Splash.visible = false
-			$CanvasLayer/PlayTextContainer.visible = false
-			
 func _ready():
 	rng.randomize()
 	$CanvasLayer/MarginContainer/HBoxContainer.add_constant_override("separation", 2)
@@ -47,13 +38,9 @@ func _on_YugoSpawnTimer_timeout():
 	add_child(yugo)
 
 func _on_Player_collect_licitar(points):
-	if !started:
-		return
 	score += points
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
 
 func _on_Player_take_damage():
-	if !started:
-		return
 	score = max(score - 5, 0)
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
