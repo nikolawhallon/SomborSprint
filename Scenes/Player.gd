@@ -10,7 +10,26 @@ export var jump_speed = 300
 var velocity = Vector2(run_speed, 0)
 var direction = Vector2(1, 0)
 var just_jumped = false
-			
+
+var has_opanci = false
+
+func set_animation(action):
+	if action == "jump":
+		if has_opanci:
+			$AnimatedSprite.animation = "jump_opanci"
+		else:
+			$AnimatedSprite.animation = "jump"
+	if action == "run":
+		if has_opanci:
+			$AnimatedSprite.animation = "run_opanci"
+		else:
+			$AnimatedSprite.animation = "run"
+	if action == "idle":
+		if has_opanci:
+			$AnimatedSprite.animation = "idle_opanci"
+		else:
+			$AnimatedSprite.animation = "idle"
+
 func _physics_process(_delta):
 	if !is_on_floor():
 		velocity.y += gravity
@@ -18,7 +37,7 @@ func _physics_process(_delta):
 	if Input.is_key_pressed(KEY_SPACE):
 		if is_on_floor():
 			velocity.y -= jump_speed
-			$AnimatedSprite.animation = "jump"
+			set_animation("jump")
 			
 	if Input.is_key_pressed(KEY_A):
 		velocity.x = run_speed - run_speed_delta
@@ -37,11 +56,11 @@ func _physics_process(_delta):
 	
 	if is_on_floor():
 		if velocity.x > 0:
-			$AnimatedSprite.animation = "run"
+			set_animation("run")
 		if velocity.x == 0:
-			$AnimatedSprite.animation = "idle"
+			set_animation("idle")
 		if velocity.x < 0:
-			$AnimatedSprite.animation = "run"
+			set_animation("run")
 
 	if velocity.x >= 0:
 		scale.x = 1

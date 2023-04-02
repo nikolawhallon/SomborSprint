@@ -47,3 +47,9 @@ func _on_Player_collect_licitar(points):
 func _on_Player_take_damage():
 	score = max(score - 5, 0)
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
+
+func _on_OpanciSpawnTimer_timeout():
+	if $Player.has_opanci:
+		$Player.has_opanci = false
+	else:
+		$Player.has_opanci = true
