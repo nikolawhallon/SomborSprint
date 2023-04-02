@@ -12,6 +12,7 @@ var direction = Vector2(1, 0)
 var just_jumped = false
 
 var has_opanci = false
+var yugos_destroyed = 0
 
 func set_animation(action):
 	if action == "jump":
@@ -31,6 +32,10 @@ func set_animation(action):
 			$AnimatedSprite.animation = "idle"
 
 func _physics_process(_delta):
+	if yugos_destroyed == 5:
+		has_opanci = false
+		yugos_destroyed = 0
+
 	if !is_on_floor():
 		velocity.y += gravity
 

@@ -15,6 +15,6 @@ func _on_Yugo_body_entered(body):
 			var speed = velocity.length() + body.velocity.length()
 			velocity.x = speed
 			velocity.y = -speed
-			#destroy()
+			body.yugos_destroyed += 1
 		else:
 			body.take_damage()

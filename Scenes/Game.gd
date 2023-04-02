@@ -49,7 +49,8 @@ func _on_Player_take_damage():
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
 
 func _on_OpanciSpawnTimer_timeout():
-	if $Player.has_opanci:
-		$Player.has_opanci = false
-	else:
-		$Player.has_opanci = true
+	if !$Player.has_opanci:
+		var opanci = load("res://Scenes/Opanci.tscn").instance()
+		opanci.position.x = $Player.position.x + 854
+		opanci.position.y = rng.randf_range(240 - 32, 240 - 16)
+		add_child(opanci)
