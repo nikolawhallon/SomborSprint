@@ -10,5 +10,7 @@ func _on_Licitar_body_entered(body):
 		if self.is_in_group("LicitarB"):
 			body.collect_licitar(3)
 		if self.is_in_group("LicitarC"):
+			body.collect_licitar(5)
+		if self.is_in_group("LicitarStar"):
 			body.collect_licitar(10)
 		destroy()

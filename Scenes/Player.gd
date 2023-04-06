@@ -6,27 +6,35 @@ signal take_damage
 export var gravity = 10
 export var run_speed = 200
 export var run_speed_delta = 100
-export var jump_speed = 300
+export var jump_speed = 325
 var velocity = Vector2(run_speed, 0)
 var direction = Vector2(1, 0)
 var just_jumped = false
+var double_jumping = false
 
+var has_fez = true
 var has_opanci = false
 var yugos_destroyed = 0
 
 func set_animation(action):
 	if action == "jump":
-		if has_opanci:
+		if has_fez:
+			$AnimatedSprite.animation = "jump_fez"
+		elif has_opanci:
 			$AnimatedSprite.animation = "jump_opanci"
 		else:
 			$AnimatedSprite.animation = "jump"
 	if action == "run":
-		if has_opanci:
+		if has_fez:
+			$AnimatedSprite.animation = "run_fez"
+		elif has_opanci:
 			$AnimatedSprite.animation = "run_opanci"
 		else:
 			$AnimatedSprite.animation = "run"
 	if action == "idle":
-		if has_opanci:
+		if has_fez:
+			$AnimatedSprite.animation = "idle_fez"
+		elif has_opanci:
 			$AnimatedSprite.animation = "idle_opanci"
 		else:
 			$AnimatedSprite.animation = "idle"
@@ -36,14 +44,17 @@ func _physics_process(_delta):
 		has_opanci = false
 		yugos_destroyed = 0
 
-	if !is_on_floor():
-		velocity.y += gravity
+	velocity.y += gravity
 
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y -= jump_speed
 			set_animation("jump")
-			
+		elif has_fez and !double_jumping:
+			velocity.y = -jump_speed
+			set_animation("jump")
+			double_jumping = true
+
 	if Input.is_key_pressed(KEY_A):
 		velocity.x = run_speed - run_speed_delta
 		$AnimatedSprite.speed_scale = (run_speed as float - run_speed_delta as float) / run_speed as float
@@ -60,6 +71,7 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	if is_on_floor():
+		double_jumping = false
 		if velocity.x > 0:
 			set_animation("run")
 		if velocity.x == 0:
