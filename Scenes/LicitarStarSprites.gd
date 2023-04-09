@@ -10,4 +10,5 @@ func _ready():
 		$StarA.visible = false
 		$StarB.visible = false
 		$StarC.visible = true
+		$StarD.visible = false
 	# we could use the other star variants if desired as well

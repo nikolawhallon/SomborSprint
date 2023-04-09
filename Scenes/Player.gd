@@ -12,37 +12,55 @@ var direction = Vector2(1, 0)
 var just_jumped = false
 var double_jumping = false
 
-var has_fez = true
+var has_fez = false
+var double_jumps_jumped = 0
 var has_opanci = false
 var yugos_destroyed = 0
 
 func set_animation(action):
 	if action == "jump":
-		if has_fez:
+		if has_fez and has_opanci:
+			$AnimatedSprite.animation = "jump_fez_opanci"
+		elif has_fez:
 			$AnimatedSprite.animation = "jump_fez"
 		elif has_opanci:
 			$AnimatedSprite.animation = "jump_opanci"
 		else:
 			$AnimatedSprite.animation = "jump"
 	if action == "run":
-		if has_fez:
+		if has_fez and has_opanci:
+			$AnimatedSprite.animation = "run_fez_opanci"
+		elif has_fez:
 			$AnimatedSprite.animation = "run_fez"
 		elif has_opanci:
 			$AnimatedSprite.animation = "run_opanci"
 		else:
 			$AnimatedSprite.animation = "run"
 	if action == "idle":
-		if has_fez:
+		if has_fez and has_opanci:
+			$AnimatedSprite.animation = "idle_fez_opanci"
+		elif has_fez:
 			$AnimatedSprite.animation = "idle_fez"
 		elif has_opanci:
 			$AnimatedSprite.animation = "idle_opanci"
 		else:
 			$AnimatedSprite.animation = "idle"
 
+# this is a total hack for updating the animation when you collect a fez in the air
+func reset_jump_animation():
+	if $AnimatedSprite.animation == "jump_fez_opanci" or $AnimatedSprite.animation == "jump_fez" or $AnimatedSprite.animation == "jump_opanci" or $AnimatedSprite.animation == "jump":
+		set_animation("jump")
+
 func _physics_process(_delta):
+	if double_jumps_jumped == 5:
+		has_fez = false
+		double_jumps_jumped = 0
+
 	if yugos_destroyed == 5:
 		has_opanci = false
 		yugos_destroyed = 0
+
+	reset_jump_animation()
 
 	velocity.y += gravity
 
@@ -52,8 +70,10 @@ func _physics_process(_delta):
 			set_animation("jump")
 		elif has_fez and !double_jumping:
 			velocity.y = -jump_speed
-			set_animation("jump")
+			# technically I shouldn't need to set the animation to jump here
+			# that should already be the current animation given the state of the player
 			double_jumping = true
+			double_jumps_jumped += 1
 
 	if Input.is_key_pressed(KEY_A):
 		velocity.x = run_speed - run_speed_delta

@@ -59,3 +59,10 @@ func _on_OpanciSpawnTimer_timeout():
 		opanci.position.x = $Player.position.x + 854
 		opanci.position.y = rng.randf_range(240 - 32, 240 - 16)
 		add_child(opanci)
+
+func _on_FezSpawnTimer_timeout():
+	if !$Player.has_fez:
+		var fez = load("res://Scenes/Fez.tscn").instance()
+		fez.position.x = $Player.position.x + 854
+		fez.position.y = rng.randf_range(240 - 120, 240 - 96)
+		add_child(fez)
