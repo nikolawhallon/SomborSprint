@@ -68,12 +68,14 @@ func _physics_process(_delta):
 		if is_on_floor():
 			velocity.y -= jump_speed
 			set_animation("jump")
+			$JumpAudio.play()
 		elif has_fez and !double_jumping:
 			velocity.y = -jump_speed
 			# technically I shouldn't need to set the animation to jump here
 			# that should already be the current animation given the state of the player
 			double_jumping = true
 			double_jumps_jumped += 1
+			$AirAudio.play()
 
 	if Input.is_key_pressed(KEY_A):
 		velocity.x = run_speed - run_speed_delta
@@ -112,6 +114,7 @@ func take_damage():
 	$DamageTimer.stop()
 	$DamageTimer.start()
 	emit_signal("take_damage")
+	$DamageAudio.play()
 
 var damage_iteration = 0
 func _on_DamageTimer_timeout():

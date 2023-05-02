@@ -13,4 +13,10 @@ func _on_Licitar_body_entered(body):
 			body.collect_licitar(5)
 		if self.is_in_group("LicitarStar"):
 			body.collect_licitar(10)
-		destroy()
+		visible = false
+		set_collision_layer_bit(0, false)
+		set_collision_mask_bit(0, false)
+		$AudioStreamPlayer2D.play()
+
+func _on_AudioStreamPlayer2D_finished():
+	destroy()

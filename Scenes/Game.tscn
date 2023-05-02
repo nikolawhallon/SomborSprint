@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Music/sombor_sprint_main_theme.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Ground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/licitar_b.png" type="Texture" id=7]
@@ -72,6 +73,11 @@ text = "0"
 [node name="FezSpawnTimer" type="Timer" parent="."]
 wait_time = 15.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+autoplay = true
 
 [connection signal="collect_licitar" from="Player" to="." method="_on_Player_collect_licitar"]
 [connection signal="take_damage" from="Player" to="." method="_on_Player_take_damage"]

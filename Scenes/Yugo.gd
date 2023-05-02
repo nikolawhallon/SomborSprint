@@ -16,5 +16,6 @@ func _on_Yugo_body_entered(body):
 			velocity.x = speed
 			velocity.y = -speed
 			body.yugos_destroyed += 1
+			$AudioStreamPlayer2D.play()
 		else:
 			body.take_damage()
