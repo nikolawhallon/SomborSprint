@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sombor_sprint_title.ogg-f180d06f68186354076a23a13ee8485f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Music/sombor_sprint_title.ogg"
+dest_files=[ "res://.import/sombor_sprint_title.ogg-f180d06f68186354076a23a13ee8485f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
