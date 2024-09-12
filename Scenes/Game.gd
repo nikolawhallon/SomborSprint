@@ -20,6 +20,11 @@ func _process(_delta):
 		if ground_index > player_ground_index + 1:
 			ground.global_position.x -= 720 * 2
 
+	var despawnables = get_tree().get_nodes_in_group("Despawn")
+	for despawnable in despawnables:
+		if despawnable.global_position.x < $Player.global_position.x - 720:
+			despawnable.destroy()
+	
 func _on_LicitarSpawnTimer_timeout():
 	var licitar
 	var probability = rng.randf()
