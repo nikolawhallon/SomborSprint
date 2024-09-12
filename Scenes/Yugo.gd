@@ -7,6 +7,9 @@ func destroy():
 
 func _process(delta):
 	position += velocity * delta
+	
+	if global_position.y < -480:
+		destroy()
 
 func _on_Yugo_body_entered(body):
 	if body.is_in_group("Player"):
