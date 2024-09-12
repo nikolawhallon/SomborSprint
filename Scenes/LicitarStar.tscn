@@ -10,7 +10,7 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="LicitarStar" type="Area2D" groups=["LicitarStar"]]
+[node name="LicitarStar" type="Area2D" groups=["Despawn", "LicitarStar"]]
 script = ExtResource( 3 )
 
 [node name="LicitarStarSprites" type="Node2D" parent="."]

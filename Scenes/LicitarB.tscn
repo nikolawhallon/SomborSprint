@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 6.5 )
 
-[node name="LicitarB" type="Area2D" groups=["LicitarB"]]
+[node name="LicitarB" type="Area2D" groups=["Despawn", "LicitarB"]]
 script = ExtResource( 2 )
 
 [node name="LicitarB" type="Sprite" parent="."]
