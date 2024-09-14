@@ -53,6 +53,7 @@ func _on_YugoSpawnTimer_timeout():
 func _on_Player_collect_licitar(points):
 	score += points
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
+	$Websocket.send_event("LicitarCollected")
 
 func _on_Player_take_damage():
 	score = max(score - 5, 0)
@@ -71,3 +72,7 @@ func _on_FezSpawnTimer_timeout():
 		fez.position.x = $Player.position.x + 854
 		fez.position.y = rng.randf_range(240 - 120, 240 - 96)
 		add_child(fez)
+
+func _on_Websocket_event_received(event):
+	print("handling event")
+	print(event)
