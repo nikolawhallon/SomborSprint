@@ -50,6 +50,14 @@ func _on_YugoSpawnTimer_timeout():
 	yugo.velocity.x = rng.randf_range(-100.0, -200.0)
 	add_child(yugo)
 
+func spawn_keys():
+	for _i in range(1, 100):
+		var key = load("res://Scenes/Key.tscn").instance()
+		key.position.x = $Player.position.x + rng.randi_range(0, 2000)
+		key.position.y = -16 - + rng.randi_range(0, 64)
+		key.velocity.y = rng.randf_range(200.0, 400.0)
+		add_child(key)
+	
 func _on_Player_collect_licitar(points):
 	score += points
 	$CanvasLayer/MarginContainer/HBoxContainer/LicitarScore.text = str(score)
@@ -76,3 +84,5 @@ func _on_FezSpawnTimer_timeout():
 func _on_Websocket_event_received(event):
 	print("handling event")
 	print(event)
+	if event == "KeyCollected":
+		spawn_keys()
