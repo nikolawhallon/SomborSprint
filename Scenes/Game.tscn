@@ -41,33 +41,33 @@ autostart = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchor_right = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = 14.0
+margin_left = 32.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 32.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
-margin_right = 312.0
-margin_bottom = 13.0
+margin_right = 272.0
+margin_bottom = 16.0
 
 [node name="LicitarIcon" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_right = 15.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 texture = ExtResource( 7 )
 
 [node name="LicitarX" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 19.0
-margin_top = 2.0
+margin_top = 4.0
 margin_right = 27.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 theme = ExtResource( 8 )
 text = "x"
 
 [node name="LicitarScore" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 31.0
-margin_top = 2.0
+margin_top = 4.0
 margin_right = 39.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 theme = ExtResource( 8 )
 text = "0"
 

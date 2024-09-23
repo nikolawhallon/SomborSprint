@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 
 [node name="Logo" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 120 )
-frame = 39
+frame = 13
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -22,11 +22,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -80.0
+margin_left = -88.0
 margin_top = -26.0
-margin_right = 80.0
+margin_right = 88.0
 theme = ExtResource( 4 )
-text = "PRESS SPACE TO START"
+text = "PRESS A/B/X/Y TO START"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
