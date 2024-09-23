@@ -77,10 +77,10 @@ func _physics_process(_delta):
 			double_jumps_jumped += 1
 			$AirAudio.play()
 
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_E):
 		velocity.x = run_speed - run_speed_delta
 		$AnimatedSprite.speed_scale = (run_speed as float - run_speed_delta as float) / run_speed as float
-	elif Input.is_key_pressed(KEY_D):
+	elif Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_F):
 		velocity.x = run_speed + run_speed_delta
 		$AnimatedSprite.speed_scale = (run_speed as float + run_speed_delta as float) / run_speed as float
 	else:
